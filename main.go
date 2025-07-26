@@ -15,6 +15,8 @@ func main() {
 	http.HandleFunc("/", handlers.HomeHandler)
 	http.HandleFunc("/createuser", handlers.CreateUser)
 	http.HandleFunc("/loginuser", handlers.LoginUser)
+	http.HandleFunc("/edituser", handlers.EditUser)
+	http.HandleFunc("/deleteuser", handlers.DeleteUser)
 	err := http.ListenAndServe(":8000", nil)
 	defer database.DB.Close()
 	if err != nil {
