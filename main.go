@@ -14,6 +14,7 @@ func main() {
 	fmt.Println("Server is running on http://localhost:8000")
 	http.HandleFunc("/", handlers.HomeHandler)
 	http.HandleFunc("/createuser", handlers.CreateUser)
+	http.HandleFunc("/loginuser", handlers.LoginUser)
 	err := http.ListenAndServe(":8000", nil)
 	defer database.DB.Close()
 	if err != nil {
