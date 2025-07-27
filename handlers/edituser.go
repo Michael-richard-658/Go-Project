@@ -9,7 +9,7 @@ import (
 	"github.com/Michael-richard-658/Go-project/database"
 )
 
-func EditUser(w http.ResponseWriter, r *http.Request) {
+func (u UserCRUD) EditUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPut {
 		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return

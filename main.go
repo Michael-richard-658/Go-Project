@@ -11,14 +11,22 @@ import (
 
 func main() {
 	database.DbConnection()
-	fmt.Println("Server is running on http://localhost:8000")
-	http.HandleFunc("/", handlers.HomeHandler)
-	http.HandleFunc("/createuser", handlers.CreateUser)
-	http.HandleFunc("/loginuser", handlers.LoginUser)
-	http.HandleFunc("/edituser", handlers.EditUser)
-	http.HandleFunc("/deleteuser", handlers.DeleteUser)
-	err := http.ListenAndServe(":8000", nil)
 	defer database.DB.Close()
+
+	// Create an instance of UserCRUD
+	UserCRUD := &handlers.UserCRUD{}
+
+	fmt.Println("Server is running on http://localhost:8000")
+
+	// Use instance methods
+	http.HandleFunc("/", handlers.HomeHandler)
+	http.HandleFunc("/createuser", UserCRUD.CreateUser)
+	http.HandleFunc("/loginuser", UserCRUD.LoginUser)
+	http.HandleFunc("/edituser", UserCRUD.EditUser)
+	http.HandleFunc("/deleteuser", UserCRUD.DeleteUser)
+
+	// Start the server
+	err := http.ListenAndServe(":8000", nil)
 	if err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}

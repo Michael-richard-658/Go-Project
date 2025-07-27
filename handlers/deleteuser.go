@@ -7,7 +7,7 @@ import (
 	"github.com/Michael-richard-658/Go-project/database"
 )
 
-func DeleteUser(w http.ResponseWriter, r *http.Request) {
+func (u UserCRUD) DeleteUser(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed!", http.StatusMethodNotAllowed)
 		return
